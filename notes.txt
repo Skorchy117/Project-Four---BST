@@ -1,1 +1,0 @@
-every other text file deleted will try to push the deleted changes
