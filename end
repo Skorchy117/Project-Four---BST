@@ -1,0 +1,66 @@
+[33mcommit 5459fe5901f4e33ce1395d2d5c4f44c40be597c4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 0a77259 d4197d9
+Author: Anthony Esmeralda <aresmeralda95@gmail.com>
+Date:   Thu Nov 16 19:53:12 2017 -0800
+
+    Merge branch 'master' of https://github.com/Skorchy117/Project-Four---BST
+
+[33mcommit 0a77259389f81f81fec62dd8d5a7920bc79428fc[m
+Author: Anthony Esmeralda <aresmeralda95@gmail.com>
+Date:   Thu Nov 16 19:52:45 2017 -0800
+
+    testing again
+
+[33mcommit d4197d9ec8008c334c55680a7f578b45fba7d2e7[m
+Author: Kevin Ngo <kngo1207@verizon.net>
+Date:   Thu Nov 16 19:43:26 2017 -0800
+
+    updating all at once
+
+[33mcommit 25861c8a3d33b0fb8d08c4b34a56dc22cb328089[m
+Author: Kevin Ngo <kngo1207@verizon.net>
+Date:   Thu Nov 16 19:35:20 2017 -0800
+
+    removed notes
+
+[33mcommit 021eee9ae6953d22edfbbfbc2b95a036976722d3[m
+Author: Kevin Ngo <kngo1207@verizon.net>
+Date:   Thu Nov 16 19:34:41 2017 -0800
+
+    lkasd
+
+[33mcommit 394b9c9fa046352500016569be1adf534a98a504[m
+Author: Kevin Ngo <kngo1207@verizon.net>
+Date:   Thu Nov 16 19:29:20 2017 -0800
+
+    updating a comment to an existing file
+
+[33mcommit 2bb952e69681207506263e83dbc03faf366bfd02[m
+Author: Kevin Ngo <kngo1207@verizon.net>
+Date:   Thu Nov 16 19:24:54 2017 -0800
+
+    testing the add of add.txt
+
+[33mcommit 7af094f3a201f80028927b27a095a976613fb338[m
+Author: unknown <aresmeralda95@gmail.com>
+Date:   Thu Nov 16 19:18:08 2017 -0800
+
+    included a message
+
+[33mcommit 64d8a6ac588c02f90dc6be75b18b4a269fa1a177[m
+Author: unknown <aresmeralda95@gmail.com>
+Date:   Thu Nov 16 19:06:34 2017 -0800
+
+    testing
+
+[33mcommit 6ca95a89222cd7d9bdaeebfe31af2d5e8aa42af2[m
+Author: unknown <aresmeralda95@gmail.com>
+Date:   Wed Nov 15 23:39:39 2017 -0800
+
+    everything but AVL
+
+[33mcommit 35648145790653e42041266dcc7086e435719eb4[m
+Author: Anthony Esmeralda <aresmeralda95@gmail.com>
+Date:   Wed Nov 15 23:30:20 2017 -0800
+
+    Initial commit
