@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    /* Hey anthony i'm adding this code through updates and what not... via terminal. */
 	typedef Entry E;
 	SearchTree t;
 	E asdf;
