@@ -126,3 +126,5 @@ BinaryTree::Position SearchTree::eraser(BinaryTree::Position data)
 	tSize--;
 	return T.removeAboveExternal(w);
 }
+
+//BinaryTree::Position SearchTree::restructure(const BinaryTree::Position &data); // Not done

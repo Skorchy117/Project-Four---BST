@@ -38,10 +38,12 @@ public:
 	class Position {
 	private:
 		Node *curNode;
+		int height;
 	public:
 		Position()
 		{
 			curNode = nullptr;
+			height = 0;
 		}
 		Position(Node *passedNode)
 		{
@@ -83,7 +85,22 @@ public:
 		{
 			return curNode != p.curNode;
 		}
-
+		int getHeight() const
+		{
+			return height;
+		}
+		void setHeight(int h)
+		{
+			if (h>=0)
+				height = h;
+		}
+		bool isExternal()
+		{
+			if ((curNode->right == NULL) && (curNode->left == NULL))
+				return true;
+			else
+				return false;
+		}
 		friend class BinaryTree;
 	};
 	typedef list<Position> PositionList;		// CREATE A LIST NAMED POSITIONLIST TO HOLD OUR POSITIONS.
