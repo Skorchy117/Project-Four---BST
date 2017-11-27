@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+	int test1;
 	typedef Entry E;
 	SearchTree t;
 	E asdf;
@@ -24,5 +25,7 @@ int main()
 		asdf = *it;
 		asdf.printData();
 	}
+
+	cin >> test1;
 	return 0;
 }
