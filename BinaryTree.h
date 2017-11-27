@@ -38,7 +38,7 @@ public:
 	class Position {
 	private:
 		Node *curNode;
-		int height;
+        int height;
 	public:
 		Position()
 		{
