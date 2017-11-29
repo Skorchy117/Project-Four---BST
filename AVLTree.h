@@ -26,7 +26,7 @@ protected:
 public:						// public functions
 	AVLTree();						// constructor
 	Iterator insert(Entry& entry); //Insert the entry based on the key (county_state_code)
-	void erase(const county_state_code& key);// throw(NonexistentElement);	// remove country_state_code's entry
+	void erase(const county_state_code& key) throw(NonexistentElement);	// remove country_state_code's entry
 	void erase(const Iterator& it);			// remove entry at it
 
 protected:						// utility functions 

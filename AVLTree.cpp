@@ -1,8 +1,8 @@
 #include "AVLTree.h"
 
-/*
+/************
 	Starting by defining the utilities
-*/
+************/
 
 int AVLTree::height(const TPos& pos) const
 {
@@ -23,40 +23,75 @@ void AVLTree::setHeight(TPos pos)
 // Returns true if the position's height is balanced
 bool AVLTree::isBalanced(const TPos& pos) const
 {
-    int bal = height(pos.left()) - height(pos.right());
-    if ((bal >= 0) && (bal <= 1))
-        return true;
+    int bal = height(pos.left()) - height(pos.right()); // Checks if the balance is over 1
+    if ((bal >= 0) && (bal <= 1)) // If it is over 1 or less than 1
+        return true; // Return that is is true
     else
-        return false;
+        return false; // Return it is false
 }
 
-TPos AVLTree::tallGrandchild(const TPos& pos) const
+// Returns the tallest grandchild
+AVLTree::TPos AVLTree::tallGrandchild(const TPos& pos) const
 {
     TPos posL = pos.left();
     TPos posR = pos.right();
-    if (height(posL) >= height(posR))
+    if (height(posL) >= height(posR)) // If the height of the left position is greater than the height of the right's
     {
-        if (
+        if (height(posL.left()) >= height(posL.right())) // Check the height of the left position's children, if the left position's left child is greater than its right return the left that position
+            return posL.left();
+        else
+            return posL.right(); // Since the right child's height is greater, return the right
+    }
+    else // The height of the right position is greater than the height of the left's
+    {
+        if (height(posR.right()) >= height(posR.left())) // If the right position's height of the right child is greater than the left child return the right
+            return posR.right();
+        else // Return the left one since its greater
+            return posR.left();
     }
 }
 
-
-template <typename E>                    // get tallest grandchild
-typename AVLTree<E>::TPos AVLTree<E>::tallGrandchild(const TPos& z) const
+// Rebalances the tree
+void AVLTree::rebalance(const TPos& pos) // Will rebalance whatever position passed
 {
-    TPos zl = z.left();
-    TPos zr = z.right();
-    if (height(zl) >= height(zr))            // left child taller
-        if (height(zl.left()) >= height(zl.right()))
-            return zl.left();
-        else
-            return zl.right();
-        else                         // right child taller
-            if (height(zr.right()) >= height(zr.left()))
-                return zr.right();
-            else
-                return zr.left();
+    TPos temp = pos; // Assigns a temporary position to the passed position
+    while (!(temp == ST::root())) // While temp is not the root
+    {
+        temp = temp.parent(); // Assign temp to be its parent
+        setHeight(temp); // set the height of the parent
+        if (!isBalanced(temp)) // If the node is unbalanced will balance it
+        {
+            TPos otherTemp = tallGrandchild(temp); // Sets another position as the tallest grandchild
+            temp = restructure(otherTemp); // Restructures that grandchild then assigns the rebalanced section to temp
+            setHeight(temp.left()); // Corrects the height
+            setHeight(temp.right());
+            setHeight(temp); // Sets temp's height
+        }
+    }
 }
+
+/************
+ Starting by defining the public
+ ************/
 
 // Will call the constructor of SearchTree since, there is no new data type (compared to the BST), but rather just functions in the AVLTree class
 AVLTree::AVLTree() : SearchTree() {};
+
+// Will insert an entry, then return an iterator at that position
+AVLTree::Iterator AVLTree::insert(Entry& entry)
+{
+    TPos temp = inserter(entry); // Inserts the entry then returns that position
+    setHeight(temp); // Sets the height at that position so it can be used before rebalancing
+    rebalance(temp);
+    return Iterator(temp);
+}
+
+// Erases a position in the AVLTree (parameter is a key which should be a county_state_code
+void AVLTree::erase(const county_state_code& key) throw(NonexistentElement) // Erase a key
+{
+    TPos temp = finder(key, ST::root());
+    if (Iterator(temp) == ST::end()) // If the item is a external
+        throw NonexistentElement("Erase of nonexistent");
+    TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance
+    rebalance(otherTemp);
+}
