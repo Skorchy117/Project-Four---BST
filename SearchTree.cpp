@@ -127,4 +127,57 @@ BinaryTree::Position SearchTree::eraser(BinaryTree::Position data)
 	return T.removeAboveExternal(w);
 }
 
-//BinaryTree::Position SearchTree::restructure(const BinaryTree::Position &data); // Not done
+BinaryTree::Position SearchTree::restructure(BinaryTree::Position data)
+{
+	BinaryTree::Position parent = data.parent();
+	BinaryTree::Position gParent = parent.parent();
+	if ((data == parent.right()) == (parent == gParent.right()))
+	{
+		rotate(parent);
+		return parent;
+	}
+	else
+	{
+		rotate(data);
+		rotate(data);
+		return data;
+	}
+	
+}
+
+void SearchTree::rotate(BinaryTree::Position p)
+{
+	BinaryTree::Position x = p;
+	BinaryTree::Position y = x.parent();
+	BinaryTree::Position z = y.parent();
+	if (z == NULL)
+	{
+		root().addElement(*x);
+		x.parent() = NULL;
+	}
+	else
+	{
+		relink(z, x, y == z.left());
+	}
+	if (x == y.right())
+	{
+		relink(y,x.right(),true);
+		relink(x,y,false);
+	}
+	else
+	{
+		relink(y,x.left(),false);
+		relink(x,y,true);
+	}
+}
+
+void SearchTree::relink(BinaryTree::Position parent, BinaryTree::Position child, bool makeLeftChild)
+{
+	child.parent() = parent;
+	if (makeLeftChild)
+	{
+		parent.left() = child;
+	}
+	else
+		parent.right() = child;
+}
