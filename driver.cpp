@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
-#include "SearchTree.h"
+#include "AVLTree.h"
 using namespace std;
 
 int main()
 {
-	int test1;
 	typedef Entry E;
-	SearchTree t;
+	/*SearchTree t;
 	E asdf;
 	E newData(50, 200, "CA");
 	t.insert(newData);
@@ -16,7 +15,7 @@ int main()
 	E elements;
 	BinaryTree::Position test;
 	E newestData_two(55, 700, "SD");
-	E newestData_three(71, 451, "OH");
+	E newestData_three(55, 451, "OH");
 	t.insert(newestData_two);
 	t.insert(newestData_three);
 	SearchTree::Iterator it(t.begin());
@@ -24,8 +23,24 @@ int main()
 	{
 		asdf = *it;
 		asdf.printData();
+	}*/
+	AVLTree newTree;
+	E newestDataz(5, 10, "asdf");
+	newTree.insert(newestDataz);
+	E newData(10, 300, "fadsf");
+	newTree.insert(newData);
+	E newestData_two(55, 700, "SD");
+	E newestData_three(45, 451, "OH");
+	newTree.insert(newestData_three);
+	newTree.insert(newestData_two);
+	SearchTree::Iterator it(newTree.begin());
+	E output;
+	for (it; it != newTree.end(); ++it)
+	{
+		output = *it;
+		output.printData();
 	}
-
-	cin >> test1;
 	return 0;
+
+
 }

@@ -23,6 +23,7 @@ class BinaryTree {
 protected:
 	struct Node {
 		Entry element;
+		int height;
 		Node *parent;
 		Node *left;
 		Node *right;
@@ -31,6 +32,7 @@ protected:
 			parent = nullptr;
 			left = nullptr;
 			right = nullptr;
+			height = 0;
 		}
 	};
 	// POSITION CLASS (NESTED CLASS)
@@ -38,12 +40,10 @@ public:
 	class Position {
 	private:
 		Node *curNode;
-		int height;
 	public:
 		Position()
 		{
 			curNode = nullptr;
-			height = 0;
 		}
 		Position(Node *passedNode)
 		{
@@ -75,7 +75,7 @@ public:
 		}
 		bool isExternal() const
 		{
-			return (curNode->left == nullptr && curNode->right == nullptr);
+			return ((curNode->left == NULL) && (curNode->right == NULL));
 		}
 		bool operator==(const Position &p)
 		{
@@ -87,19 +87,12 @@ public:
 		}
 		int getHeight() const
 		{
-			return height;
+			return curNode->height;
 		}
 		void setHeight(int h)
 		{
-			if (h>=0)
-				height = h;
-		}
-		bool isExternal()
-		{
-			if ((curNode->right == NULL) && (curNode->left == NULL))
-				return true;
-			else
-				return false;
+			if (h >= 0)
+				curNode->height = h;
 		}
 		friend class BinaryTree;
 	};

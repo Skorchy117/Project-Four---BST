@@ -32,8 +32,9 @@ protected:
 	BinaryTree::Position finder(int key,BinaryTree::Position &data);
 	BinaryTree::Position inserter(Entry data);
 	BinaryTree::Position eraser(BinaryTree::Position data);
-	BinaryTree::Position restructure(const BinaryTree::Position &data);
-
+	BinaryTree::Position restructure(BinaryTree::Position data);
+	void rotate(BinaryTree::Position p);
+	void relink(BinaryTree::Position parent, BinaryTree::Position child, bool makeLeftChild);
 ///////////////////////////////////
 //		 Iterator SubClass	    //
 /////////////////////////////////
