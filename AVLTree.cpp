@@ -1,8 +1,8 @@
 #include "AVLTree.h"
 
-/************
-	Starting by defining the utilities
-************/
+/******************************************/
+//	Starting by defining the utilities    //
+/*******************************************/
 
 int AVLTree::height(const TPos& pos) const
 {
@@ -17,17 +17,17 @@ void AVLTree::setHeight(TPos pos)
 {
     int heightL = height(pos.left()); // Get the left node's height
     int heightR = height(pos.right()); // Get the right node's height
-    pos.setHeight(1 + std::max(heightL,heightR)); // set the position as the max of the two
+    pos.setHeight(1 + max(heightL,heightR)); // set the position as the max of the two
 }
 
 // Returns true if the position's height is balanced
 bool AVLTree::isBalanced(const TPos& pos) const
 {
-    int bal = height(pos.left()) - height(pos.right()); // Checks if the balance is over 1
-    if ((bal >= 0) && (bal <= 1)) // If it is over 1 or less than 1
-        return true; // Return that is is true
-    else
-        return false; // Return it is false
+	TPos left = pos.left();
+	TPos right = pos.right();
+    int bal = height(left) - height(right); // Checks if the balance is over 1
+	return ((bal >= -1) && (bal <= 1)); // If it is over 1 or less than 1
+  
 }
 
 // Returns the tallest grandchild
@@ -55,7 +55,7 @@ AVLTree::TPos AVLTree::tallGrandchild(const TPos& pos) const
 void AVLTree::rebalance(const TPos& pos) // Will rebalance whatever position passed
 {
     TPos temp = pos; // Assigns a temporary position to the passed position
-    while (!(temp == ST::root())) // While temp is not the root
+    while (!(temp == root())) // While temp is not the root
     {
         temp = temp.parent(); // Assign temp to be its parent
         setHeight(temp); // set the height of the parent
@@ -87,11 +87,12 @@ AVLTree::Iterator AVLTree::insert(Entry& entry)
 }
 
 // Erases a position in the AVLTree (parameter is a key which should be a county_state_code
-void AVLTree::erase(const county_state_code& key) throw(NonexistentElement) // Erase a key
+void AVLTree::erase(const county_state_code& key)// Erase a key
 {
     TPos temp = finder(key, ST::root());
-    if (Iterator(temp) == ST::end()) // If the item is a external
-        throw NonexistentElement("Erase of nonexistent");
+	if (Iterator(temp) == ST::end()) // If the item is a external
+	{
+	}
     TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance
     rebalance(otherTemp);
 }
