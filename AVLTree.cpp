@@ -55,8 +55,10 @@ AVLTree::TPos AVLTree::tallGrandchild(const TPos& pos) const
 void AVLTree::rebalance(const TPos& pos) // Will rebalance whatever position passed
 {
     TPos temp = pos; // Assigns a temporary position to the passed position
-    while (!(temp == root())) // While temp is not the root
+	TPos whatRoot = root();
+    while (temp != root()) // While temp is not the root
     {
+		whatRoot = root();
         temp = temp.parent(); // Assign temp to be its parent
         setHeight(temp); // set the height of the parent
         if (!isBalanced(temp)) // If the node is unbalanced will balance it
@@ -89,8 +91,8 @@ AVLTree::Iterator AVLTree::insert(Entry& entry)
 // Erases a position in the AVLTree (parameter is a key which should be a county_state_code
 void AVLTree::erase(const county_state_code& key)// Erase a key
 {
-    TPos temp = finder(key, ST::root());
-	if (Iterator(temp) == ST::end()) // If the item is a external
+    TPos temp = finder(key, root());
+	if (Iterator(temp) == end()) // If the item is a external
 	{
 	}
     TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance

@@ -69,6 +69,18 @@ public:
 		{
 			return Position(curNode->parent);
 		}
+		void setParent(const Position &p)
+		{
+			curNode->parent = p.curNode;
+		}
+		void setRightChild(const Position &p)
+		{
+			curNode->right = p.curNode;
+		}
+		void setLeftChild(const Position &p)
+		{
+			curNode->left = p.curNode;
+		}
 		bool isRoot()
 		{
 			return curNode->parent == NULL;
@@ -111,6 +123,7 @@ public:
 	Position root() const;
 	PositionList positions() const;
 	void addRoot();
+	void setRoot(const Position & p);
 	void expandExternal(const Position& p);
 	Position removeAboveExternal(const Position &p);
 protected:

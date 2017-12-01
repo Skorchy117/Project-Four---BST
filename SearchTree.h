@@ -1,6 +1,17 @@
 #ifndef _SEARCH_TREE_H_
 #define _SEARCH_TREE_H_
+/*  Program: Project 4 - BST
+Author: Anthony Esmeralda, Kevin Ngo
+Class: CSCI 220
+Date:  Novemember 14, 2017
+Description: Binary Search Tree that uses an AVL tree search through records
+of county/state, population, and county/state name
 
+I certify that the code below is my own work.
+
+Exception(s): N/A
+
+*/
 #include "BinaryTree.h"
 
 class SearchTree {
@@ -32,9 +43,8 @@ protected:
 	BinaryTree::Position finder(int key,BinaryTree::Position &data);
 	BinaryTree::Position inserter(Entry data);
 	BinaryTree::Position eraser(BinaryTree::Position data);
-	BinaryTree::Position restructure(BinaryTree::Position data);
-	void rotate(BinaryTree::Position p);
-	void relink(BinaryTree::Position parent, BinaryTree::Position child, bool makeLeftChild);
+	BinaryTree::Position restructure(BinaryTree::Position x);
+	void newRoot(BinaryTree::Position x);
 ///////////////////////////////////
 //		 Iterator SubClass	    //
 /////////////////////////////////

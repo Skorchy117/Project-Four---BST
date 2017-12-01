@@ -20,7 +20,6 @@ class AVLTree : public SearchTree
 {
 protected:			
 	typedef int county_state_code;	// a key
-	typedef SearchTree ST;			// a search tree
 	typedef BinaryTree::Position TPos;			// a tree position
 
 public:						// public functions

@@ -127,57 +127,65 @@ BinaryTree::Position SearchTree::eraser(BinaryTree::Position data)
 	return T.removeAboveExternal(w);
 }
 
-BinaryTree::Position SearchTree::restructure(BinaryTree::Position data)
-{
-	BinaryTree::Position parent = data.parent();
-	BinaryTree::Position gParent = parent.parent();
-	if ((data == parent.right()) == (parent == gParent.right()))
+BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
+{																		// data is our x variable
+	BinaryTree::Position y = x.parent();								// parent is our y variable
+	BinaryTree::Position z = y.parent();								// grandparent is our z variable
+	BinaryTree::Position a, b, c, t0, t1, t2, t3, newNode;				
+	if (y == z.right() && x == y.right())								// if our tree is a single rotation case on the right side
 	{
-		rotate(parent);
-		return parent;
+		a = z;															// set our a,b,c accordingly
+		b = y;															
+		c = x;
+		t0 = a.left();													// t0 is always a's left
+		t1 = b.left();													// t1 is always b's left
+		t2 = c.left();													// t2 is always c's left
+		t3 = c.right();													// t3 is always c's right
+		newNode = b;													// set b to be our new subtree root
+		newNode.setParent(z.parent());									// set our newNode parents to be z's parent
+		if (z != root())												// if z is not the root
+		{
+			z.parent().setRightChild(newNode);							// then newNode is the z's parent right child (since we are on the right side)
+		}
+		else z.parent().setLeftChild(newNode);							// else then we are the left child since z was a root and the superoot's child is on the left side
+		t1.setParent(a);												// set t1 parents to be a
+		a.setRightChild(t1);											// and a's right child to be t1
+		a.setParent(newNode);											// a's parent is our new Node
+		c.setParent(newNode);											// c's parents is our new Node
+		newNode.setLeftChild(a);										// set new Nodes left child to be a
+																		// we dont need to do newNodes right child to be c, since c was already on b's right side.
 	}
-	else
+	if (y == z.left() && x == y.left())									// if our a tree is a single rotation case on left side
 	{
-		rotate(data);
-		rotate(data);
-		return data;
+		a = z;															// set our a,b,c accordingly
+		b = y;															
+		c = x;
+		t0 = a.right();													// t0 is always a's right
+		t1 = b.right();													// t1 is always b's right
+		t2 = c.right();													// t2 is always c's right
+		t3 = c.left();													// t3 is always c's left
+		newNode = b;													// b will be the new subtree root
+		newNode.setParent(z.parent());									// newNodes parent is z's parent
+		z.parent().setLeftChild(newNode);								// this one doesnt need a special case like in the right side case since we're always making z's parent child left.
+		t1.setParent(a);												// t1's parent is a
+		a.setLeftChild(t1);												// a left child is t1
+		a.setParent(newNode);											// a's parent is newNode
+		c.setParent(newNode);											// c's parent is newNode
+		newNode.setRightChild(a);										// newNode's right child is a
+																		// again, we do not need to set a left child since newNode's left child is already c.
 	}
-	
+	// double rotation
+
+	// double rotation
+
+	if (z == root())													// if z was the root, we need to make sure to change the root 
+	{
+		newRoot(newNode);													
+	}
+	return newNode;
 }
 
-void SearchTree::rotate(BinaryTree::Position p)
+void SearchTree::newRoot(BinaryTree::Position x)
 {
-	BinaryTree::Position x = p;
-	BinaryTree::Position y = x.parent();
-	BinaryTree::Position z = y.parent();
-	if (z == NULL)
-	{
-		root().addElement(*x);
-		x.parent() = NULL;
-	}
-	else
-	{
-		relink(z, x, y == z.left());
-	}
-	if (x == y.right())
-	{
-		relink(y,x.right(),true);
-		relink(x,y,false);
-	}
-	else
-	{
-		relink(y,x.left(),false);
-		relink(x,y,true);
-	}
-}
-
-void SearchTree::relink(BinaryTree::Position parent, BinaryTree::Position child, bool makeLeftChild)
-{
-	child.parent() = parent;
-	if (makeLeftChild)
-	{
-		parent.left() = child;
-	}
-	else
-		parent.right() = child;
+	T.setRoot(x);
 }

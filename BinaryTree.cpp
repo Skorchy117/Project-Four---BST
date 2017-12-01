@@ -27,6 +27,11 @@ void BinaryTree::addRoot()
 	_root = new Node;
 	counter++;
 }
+void BinaryTree::setRoot(const Position & p)
+{
+	Node *temp = p.curNode;
+	_root = temp;
+}
 BinaryTree::Position BinaryTree::removeAboveExternal(const Position & p)
 {
 	Node *temp = p.curNode;
