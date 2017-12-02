@@ -11,7 +11,8 @@ int main()
 {
 	typedef Entry E;
 	AVLTree newTree;
-	fillTree(newTree, "p4small.txt");
+	fillTree(newTree, "p4large.txt");
+	//fillTree(newTree, "p4small.txt");
 	/*E uno(20, 1, "asdf");
 	E dos(55, 21, "asdf");
 	E tres(13, 123, "123");
@@ -29,10 +30,14 @@ int main()
 	*/
 	SearchTree::Iterator it(newTree.begin());
 	E output;
+	int j = 1;
 	for (it; it != newTree.end(); ++it)
 	{
 		output = *it;
+		cout << j << " ";
 		output.printData();
+		cout << endl;
+		j++;
 	}
 	string s;
 	cin >> s;
@@ -56,6 +61,7 @@ void fillTree(AVLTree& t, string fileName)
 	}
 	else
 		cout << "Incorrect file name passed or does not exist.\n";
+	infile.close();
 }
 
 void stringToEntry(string s, Entry& e)

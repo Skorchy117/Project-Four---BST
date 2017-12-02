@@ -143,7 +143,7 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 		t3 = c.right();													// t3 is always c's right
 		newNode = b;													// set b to be our new subtree root
 		newNode.setParent(z.parent());									// set our newNode parents to be z's parent
-		if (z != root())												// if z is not the root
+		if ((z != root()) && (z != z.parent().left()))												// if z is not the root
 		{
 			z.parent().setRightChild(newNode);							// then newNode is the z's parent right child (since we are on the right side)
 		}
