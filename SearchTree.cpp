@@ -131,11 +131,11 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 {																		// data is our x variable
 	BinaryTree::Position y = x.parent();								// parent is our y variable
 	BinaryTree::Position z = y.parent();								// grandparent is our z variable
-	BinaryTree::Position a, b, c, t0, t1, t2, t3, newNode;				
+	BinaryTree::Position a, b, c, t0, t1, t2, t3, newNode;
 	if (y == z.right() && x == y.right())								// if our tree is a single rotation case on the right side
 	{
 		a = z;															// set our a,b,c accordingly
-		b = y;															
+		b = y;
 		c = x;
 		t0 = a.left();													// t0 is always a's left
 		t1 = b.left();													// t1 is always b's left
@@ -158,7 +158,7 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 	if (y == z.left() && x == y.left())									// if our a tree is a single rotation case on left side
 	{
 		a = z;															// set our a,b,c accordingly
-		b = y;															
+		b = y;
 		c = x;
 		t0 = a.right();													// t0 is always a's right
 		t1 = b.right();													// t1 is always b's right
@@ -174,10 +174,53 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 		newNode.setRightChild(a);										// newNode's right child is a
 																		// again, we do not need to set a left child since newNode's left child is already c.
 	}
-	// double rotation
+	if (y == z.right() && x == y.left())
+	{
+		a = z;															// set our a,b,c accordingly
+		b = x;
+		c = y;
+		t0 = a.left();													// t0 is always a's left
+		t1 = b.right();													// t1 is always b's right
+		t2 = b.left();													// t2 is always b's left
+		t3 = c.right();													// t3 is always c's right
+		newNode = b;													// b will be the new subtree root
+		newNode.setParent(z.parent());									// newNodes parent is z's parents
+		if (z != root())												// check if z is a root since we're doing a right left rotation
+		{
+			z.parent().setRightChild(newNode);							// if its not, newNode will be the right child of z's parent
+		}
+		else z.parent().setLeftChild(newNode);							// else it will be the new root
+		t1.setParent(a);												// t1's parent is a
+		a.setRightChild(t1);											// a's right child is t1
+		t2.setParent(c);												// t2's parent is c
+		c.setLeftChild(t2);												// c's left child is t2
+		a.setParent(newNode);											// a's parent is newNode
+		c.setParent(newNode);											// c's parent is newNode.
+		newNode.setLeftChild(a);										// newNodes left child is a
+		newNode.setRightChild(c);										// newNodes right child is b
+	}
 
-	// double rotation
-
+	if (y == z.left() && x == y.right())
+	{
+		c = z;															// set our a,b,c accordingly
+		b = x;															
+		a = y;
+		t0 = a.left();													// t0 is always a's left
+		t1 = b.left();													// t1 is always b's leght
+		t2 = b.right();													// t2 is always b's right
+		t3 = c.right();													// t3 is always c's right
+		newNode = b;													// b will be the new subtree root
+		newNode.setParent(z.parent());									// newNodes parent is z's parents
+		z.parent().setLeftChild(newNode);								// z's parent left child is our newNode
+		t1.setParent(a);												// t1's parent is a
+		a.setRightChild(t1);											// a's right child is t1
+		t2.setParent(c);												// t2's parent is c;
+		c.setLeftChild(t2);												// c's left child is t2
+		a.setParent(newNode);											// a's parent is newNode
+		c.setParent(newNode);											// c's parent is newNode
+		newNode.setLeftChild(a);										// newNodes left child is a
+		newNode.setRightChild(c);										// newNodes right child is c
+	}
 	if (z == root())													// if z was the root, we need to make sure to change the root 
 	{
 		newRoot(newNode);													
