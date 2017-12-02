@@ -143,7 +143,7 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 		t3 = c.right();													// t3 is always c's right
 		newNode = b;													// set b to be our new subtree root
 		newNode.setParent(z.parent());									// set our newNode parents to be z's parent
-		if (z != root() && z != z.parent().left())						// if z is not the root and z does not equal the parent of z's left
+		if (z != z.parent().left())						// if z is not the root and z does not equal the parent of z's left
 		{
 			z.parent().setRightChild(newNode);							// then newNode is the z's parent right child (since we are on the right side)
 		}
@@ -189,7 +189,7 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 		t3 = c.right();													// t3 is always c's right
 		newNode = b;													// b will be the new subtree root
 		newNode.setParent(z.parent());									// newNodes parent is z's parents
-		if (z != root() && z != z.parent().left())												// check if z is a root since we're doing a right left rotation
+		if (z != z.parent().left())												// check if z is a root since we're doing a right left rotation
 		{
 			z.parent().setRightChild(newNode);							// if its not, newNode will be the right child of z's parent
 		}
