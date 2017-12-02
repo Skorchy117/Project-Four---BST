@@ -44,12 +44,13 @@ void SearchTree::erase(const Iterator & p)
 
 SearchTree::Iterator SearchTree::find(int key)
 {
+	BinaryTree::Position dummy;
 	BinaryTree::Position value = finder(key, root());		// use the finder function to find our position
 	if (!value.isExternal())								// if our value function is internal
 	{
 		return SearchTree::Iterator(value);					// return the iterator
 	}
-	else return NULL;										// else return NULL.
+	else return NULL;				// else return NULL.
 }
 
 SearchTree::Iterator SearchTree::insert(Entry data)
@@ -163,6 +164,7 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 		a.setParent(newNode);											// a's parent is our new Node
 		c.setParent(newNode);											// c's parents is our new Node
 		newNode.setLeftChild(a);										// set new Nodes left child to be a
+		newNode.setRightChild(c);
 																		// we dont need to do newNodes right child to be c, since c was already on b's right side.
 	}
 	if (y == z.left() && x == y.left())									// if our a tree is a single rotation case on left side
@@ -186,6 +188,7 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 		a.setParent(newNode);											// a's parent is newNode
 		c.setParent(newNode);											// c's parent is newNode
 		newNode.setRightChild(a);										// newNode's right child is a
+		newNode.setLeftChild(c);
 																		// again, we do not need to set a left child since newNode's left child is already c.
 	}
 	if (y == z.right() && x == y.left())
@@ -194,8 +197,8 @@ BinaryTree::Position SearchTree::restructure(BinaryTree::Position x)
 		b = x;
 		c = y;
 		t0 = a.left();													// t0 is always a's left
-		t1 = b.right();													// t1 is always b's right
-		t2 = b.left();													// t2 is always b's left
+		t1 = b.left();													// t1 is always b's right
+		t2 = b.right();													// t2 is always b's left
 		t3 = c.right();													// t3 is always c's right
 		newNode = b;													// b will be the new subtree root
 		newNode.setParent(z.parent());									// newNodes parent is z's parents
