@@ -127,6 +127,6 @@ void performAction(AVLTree& tree, int _case)
     string name;
     if (_case == 1)
     {
-        cout << "You chose to search for a record, enter a 
+        cout << "You chose to search for a record, enter a county-state-code"
     }
 }
