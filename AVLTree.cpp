@@ -1,5 +1,15 @@
+/*  Program: Project 4 - BST
+ Author: Anthony Esmeralda, Kevin Ngo
+ Class: CSCI 220
+ Date:  Novemember 14, 2017
+ Description: Binary Search Tree that uses an AVL tree search through records
+ of county/state, population, and county/state name
+ 
+ I certify that the code below is my own work.
+ 
+ Exception(s): N/A
+ */
 #include "AVLTree.h"
-
 /******************************************/
 //	Starting by defining the utilities    //
 /*******************************************/
@@ -92,9 +102,18 @@ AVLTree::Iterator AVLTree::insert(Entry& entry)
 void AVLTree::erase(const county_state_code& key)// Erase a key
 {
     TPos temp = finder(key, root());
-	if (Iterator(temp) == end()) // If the item is a external
+	if (!temp.isExternal()) // If the item is a external
 	{
+		TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance
+		rebalance(otherTemp);
+		cout << "Record was succesfully deleted" << endl;
 	}
+<<<<<<< HEAD
     TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance
     rebalance(otherTemp);
 }
+=======
+	else cout << "Record doesnt exists" << endl;
+
+}
+>>>>>>> a8a2c187052dc43a0a5b0d69497c121fa9b4c17f

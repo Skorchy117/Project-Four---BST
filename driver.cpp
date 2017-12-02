@@ -1,17 +1,29 @@
+/*  Program: Project 4 - BST
+ Author: Anthony Esmeralda, Kevin Ngo
+ Class: CSCI 220
+ Date:  Novemember 14, 2017
+ Description: Binary Search Tree that uses an AVL tree search through records
+ of county/state, population, and county/state name
+ 
+ I certify that the code below is my own work.
+ 
+ Exception(s): N/A
+ */
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "AVLTree.h"
 using namespace std;
 
-void fillTree(AVLTree& t, string fileName);
-void stringToEntry(string s, Entry& e);
+void fillTree(AVLTree t, string fileName);
+void stringToEntry(string s,Entry & e);
 
 int main()
 {
 	typedef Entry E;
 	AVLTree newTree;
 	fillTree(newTree, "p4large.txt");
+<<<<<<< HEAD
 	//fillTree(newTree, "p4small.txt");
 	/*E uno(20, 1, "asdf");
 	E dos(55, 21, "asdf");
@@ -31,20 +43,38 @@ int main()
 	SearchTree::Iterator it(newTree.begin());
 	E output;
 	int j = 1;
+=======
+	//E uno(6071, 1, "asdf");
+	//E dos(6059, 21, "asdf");
+	//E tres(6019, 123, "123");
+	//E quatro(6047, 1234, "1234");
+	//E cinco(6055, 1234, "asdfasdf");
+	//newTree.insert(uno);
+	//newTree.insert(dos);
+	//newTree.insert(tres);
+	//newTree.insert(quatro);
+	//newTree.insert(cinco);
+	SearchTree::Iterator it(newTree.begin());
+	E output;
+	int i = 0;
+>>>>>>> a8a2c187052dc43a0a5b0d69497c121fa9b4c17f
 	for (it; it != newTree.end(); ++it)
 	{
+		cout << i << " ";
 		output = *it;
 		cout << j << " ";
 		output.printData();
 		cout << endl;
+<<<<<<< HEAD
 		j++;
+=======
+		i++;
+>>>>>>> a8a2c187052dc43a0a5b0d69497c121fa9b4c17f
 	}
-	string s;
-	cin >> s;
 	return 0;
 }
 
-void fillTree(AVLTree& t, string fileName)
+void fillTree(AVLTree t, string fileName)
 {
 	Entry E;
 	string record;
@@ -64,7 +94,7 @@ void fillTree(AVLTree& t, string fileName)
 	infile.close();
 }
 
-void stringToEntry(string s, Entry& e)
+void stringToEntry(string s, Entry &e)
 {
 	int sSize = s.length(), lowerBound = 0, upperBound, dummyV;
 	bool commaOne = false, commaTwo = false;
