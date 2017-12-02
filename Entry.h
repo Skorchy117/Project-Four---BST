@@ -13,6 +13,7 @@
 #define _ENTRY_H_
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 class Entry {

@@ -44,13 +44,13 @@ void SearchTree::erase(const Iterator & p)
 
 SearchTree::Iterator SearchTree::find(int key)
 {
-	BinaryTree::Position dummy;
+
 	BinaryTree::Position value = finder(key, root());		// use the finder function to find our position
 	if (!value.isExternal())								// if our value function is internal
 	{
 		return SearchTree::Iterator(value);					// return the iterator
 	}
-	else return NULL;				// else return NULL.
+	else return SearchTree::Iterator(root().parent());				// else return NULL.
 }
 
 SearchTree::Iterator SearchTree::insert(Entry data)

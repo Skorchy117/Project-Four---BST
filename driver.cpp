@@ -35,10 +35,14 @@ int main()
 	//newTree.insert(cinco);
 	SearchTree::Iterator it(newTree.begin());
 	E output;
+	int i = 0;
 	for (it; it != newTree.end(); ++it)
 	{
+		cout << i << " ";
 		output = *it;
 		output.printData();
+		cout << endl;
+		i++;
 	}
 	return 0;
 }

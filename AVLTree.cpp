@@ -102,9 +102,12 @@ AVLTree::Iterator AVLTree::insert(Entry& entry)
 void AVLTree::erase(const county_state_code& key)// Erase a key
 {
     TPos temp = finder(key, root());
-	if (Iterator(temp) == end()) // If the item is a external
+	if (!temp.isExternal()) // If the item is a external
 	{
+		TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance
+		rebalance(otherTemp);
+		cout << "Record was succesfully deleted" << endl;
 	}
-    TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance
-    rebalance(otherTemp);
+	else cout << "Record doesnt exists" << endl;
+
 }

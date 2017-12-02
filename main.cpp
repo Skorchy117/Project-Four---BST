@@ -27,7 +27,7 @@ int main()
     AVLTree oak;
     Entry ent;
     fillAVLTree(oak,"p4large.txt");
-    cout << "success!\n";
+    cout << "success!\n\n";
     int option;
     do
     {
@@ -99,6 +99,7 @@ int menu()
     string input;
     char inputAsChar;
     cout << "1. Search for a record\n2. Insert a record\n3. Delete a record\n4. List all records\n5. Exit\n";
+	cout << "input: ";
     cin >> input;
     inputAsChar = input[0];
     switch(inputAsChar)
@@ -120,13 +121,62 @@ int menu()
             return 0;
     }
 }
-
 void performAction(AVLTree& tree, int _case)
 {
     int countySC, population;
     string name;
     if (_case == 1)
     {
-        cout << "You chose to search for a record, enter a county-state-code"
+		cout << "You chose to search for a record, enter a county-state-code: ";
+		cin >> countySC;
+		SearchTree::Iterator found = tree.find(countySC);
+		Entry element = *found;
+		cout << endl;
+		if (element.county_state_code != 0)
+		{
+			cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name";
+			cout << endl;
+			cout << "----------------------------------------------------------------------------\n";
+			element.printData();
+			cout << endl;
+		}
+		else cout << "No data found" << endl;
+		cout << endl;
     }
+	if (_case == 2)
+	{
+		cout << "You chose to insert a record\n";
+		cout << "Enter county-state-code: ";
+		cin >> countySC;
+		cout << "Enter population: ";
+		cin >> population;
+		cout << "Enter the state/county name: ";
+		cin >> name;
+		Entry element(countySC, population, name);
+		tree.insert(element);
+		cout << "Succesfully entered your record\n";
+	}
+	if (_case == 3)
+	{
+		cout << "You chose to delete a record\n";
+		cout << "Enter which record you would like to delete by county-state-code: ";
+		cin >> countySC;
+		tree.erase(countySC);
+	}
+	if (_case == 4)
+	{
+		SearchTree::Iterator it(tree.begin());
+		Entry output;
+		setfill(" ");
+		cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name";
+		cout << endl;
+		cout << "----------------------------------------------------------------------------\n";
+		for (it; it != tree.end(); ++it)
+		{
+			output = *it;
+			output.printData();
+			cout << endl;
+		}
+		cout << endl;
+	}
 }

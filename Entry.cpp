@@ -49,5 +49,6 @@ void Entry::setPop(int pop)
 
 void Entry::printData()
 {
-	cout << county_state_code << " " << population << " " << county_state_name << " || ";
+	setfill(" ");
+	cout << left << setw(20) << county_state_code << setw(20) << population << setw(15) << left << county_state_name << right;
 }
