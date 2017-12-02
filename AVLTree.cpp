@@ -108,12 +108,6 @@ void AVLTree::erase(const county_state_code& key)// Erase a key
 		rebalance(otherTemp);
 		cout << "Record was succesfully deleted" << endl;
 	}
-<<<<<<< HEAD
-    TPos otherTemp = eraser(temp); // Erases the temp and returns the position of the position for rebalance
-    rebalance(otherTemp);
-}
-=======
 	else cout << "Record doesnt exists" << endl;
 
 }
->>>>>>> a8a2c187052dc43a0a5b0d69497c121fa9b4c17f
