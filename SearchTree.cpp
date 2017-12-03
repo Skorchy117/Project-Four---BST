@@ -42,6 +42,13 @@ void SearchTree::erase(const Iterator & p)
 	eraser(p.data);
 }
 
+int SearchTree::findDepth(int key)
+{
+	BinaryTree::Position value = finder(key, root());
+	int n = depth(value);
+	return n;
+}
+
 SearchTree::Iterator SearchTree::find(int key)
 {
 
@@ -79,7 +86,7 @@ BinaryTree::Position SearchTree::root() const
 	return T.root().left();									// since T.root() is our superroot, we go to the left to get our root.
 }
 
-BinaryTree::Position SearchTree::finder(int key, BinaryTree::Position &data)
+BinaryTree::Position SearchTree::finder(int key,BinaryTree::Position  &data)
 {
 	Entry dataEntry = *data;						// grab the data's position entry data.
 	if (data.isExternal())							// check if the data's position is external
@@ -95,6 +102,17 @@ BinaryTree::Position SearchTree::finder(int key, BinaryTree::Position &data)
 		return finder(key, data.right());			// then recursively  go to the right until the position key == key
 	}
 	else return data;
+}
+
+int SearchTree::depth(BinaryTree::Position & data)
+{
+	int n = 1;
+	while (data != root())
+	{
+		data = data.parent();
+		n++;
+	}
+	return n;
 }
 
 BinaryTree::Position SearchTree::inserter(Entry data)

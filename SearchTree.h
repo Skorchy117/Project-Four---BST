@@ -32,6 +32,7 @@ public:
 	bool empty() const;
 	void erase(int key);
 	void erase(const Iterator &p);
+	int findDepth(int key);
 	Iterator find(int key);
 	Iterator insert(Entry data);
 	Iterator begin();
@@ -39,7 +40,8 @@ public:
 
 protected:
 	BinaryTree::Position root() const;
-	BinaryTree::Position finder(int key, BinaryTree::Position &data);
+	BinaryTree::Position finder(int key,BinaryTree::Position &data);
+	int depth(BinaryTree::Position &data);
 	BinaryTree::Position inserter(Entry data);
 	BinaryTree::Position eraser(BinaryTree::Position data);
 	BinaryTree::Position restructure(BinaryTree::Position x);
