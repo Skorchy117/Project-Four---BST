@@ -15,18 +15,19 @@
 #include "AVLTree.h"
 using namespace std;
 
-void fillAVLTree(AVLTree t, string fileName);
+void fillTree(SearchTree t, string fileName);
 void stringToEntry(string s,Entry & e);
 int menu();
-void performAction(AVLTree& tree, int _case);
+void performAction(SearchTree& tree, int _case);
 
 int main()
 {
     cout << "Authors: Kevin Ngo & Anthony Esmeralda\n";
     cout << "Planting the AVL/BS tree(s).....";
     AVLTree oak;
+	SearchTree mahogany;
     Entry ent;
-    fillAVLTree(oak,"p4large.txt");
+    fillTree(oak,"p4large.txt");
     cout << "success!\n\n";
     int option;
     do
@@ -40,7 +41,7 @@ int main()
     return 0;
 }
 
-void fillAVLTree(AVLTree t, string fileName)
+void fillTree(SearchTree t, string fileName)
 {
     Entry E;
     string record;
@@ -59,7 +60,6 @@ void fillAVLTree(AVLTree t, string fileName)
         cout << "Incorrect file name passed or does not exist.\n";
     infile.close();
 }
-
 void stringToEntry(string s, Entry &e)
 {
     int sSize = s.length(), lowerBound = 0, upperBound, dummyV;
@@ -121,7 +121,7 @@ int menu()
             return 0;
     }
 }
-void performAction(AVLTree& tree, int _case)
+void performAction(SearchTree& tree, int _case)
 {
     int countySC, population;
     string name;
