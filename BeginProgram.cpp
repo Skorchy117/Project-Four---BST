@@ -171,16 +171,21 @@ void BeginProgram::performAction(AVLTree& tree, int _case)
 		SearchTree::Iterator it(tree.begin());
 		Entry output;
 		setfill(" ");
-		cout << endl;
-		cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name";
-		cout << endl;
+		myFile.open("output.txt");
+		cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
 		cout << "----------------------------------------------------------------------------\n";
+		myFile << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
+		myFile << "----------------------------------------------------------------------------\n";
 		for (it; it != tree.end(); ++it)
 		{
 			output = *it;
-			output.printData();
-			cout << endl;
+			countySC = output.getCode();
+			population = output.getPop();
+			name = output.getName();
+			cout << left << setw(20) << countySC << setw(20) << population << setw(15) << left << name << right << endl;
+			myFile << left << setw(20) << countySC << setw(20) << population << setw(15) << left << name << right << endl;
 		}
+		myFile.close();
 		cout << endl;
 	}
 }
@@ -240,15 +245,22 @@ void BeginProgram::performAction(SearchTree& tree, int _case)
 		Entry output;
 		setfill(" ");
 		cout << endl;
-		cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name";
-		cout << endl;
+		myFile.open("output.txt");
+		cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
 		cout << "----------------------------------------------------------------------------\n";
+		myFile << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
+		myFile << "----------------------------------------------------------------------------\n";
 		for (it; it != tree.end(); ++it)
 		{
 			output = *it;
-			output.printData();
+			countySC = output.getCode();
+			population = output.getPop();
+			name = output.getName();
+			cout << left << setw(20) << countySC << setw(20) << population << setw(15) << left << name << right << endl;
+			myFile << left << setw(20) << countySC << setw(20) << population << setw(15) << left << name << right << endl;
 			cout << endl;
 		}
+		myFile.close();
 		cout << endl;
 	}
 }

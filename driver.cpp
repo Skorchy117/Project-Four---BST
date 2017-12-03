@@ -23,27 +23,6 @@ int main()
 	typedef Entry E;
 	AVLTree newTree;
 	fillTree(newTree, "p4large.txt");
-<<<<<<< HEAD
-	//fillTree(newTree, "p4small.txt");
-	/*E uno(20, 1, "asdf");
-	E dos(55, 21, "asdf");
-	E tres(13, 123, "123");
-	E quatro(10, 1234, "1234");
-	E cinco(100, 1234, "asdfasdf");
-	E seis(121, 123, "asdfasdf");
-	newTree.insert(uno);
-	newTree.insert(dos);
-	newTree.insert(tres);
-	newTree.insert(quatro);
-	newTree.insert(cinco);
-	newTree.insert(seis);
-	SearchTree::Iterator it(newTree.begin());
-	E output;
-	*/
-	SearchTree::Iterator it(newTree.begin());
-	E output;
-	int j = 1;
-=======
 	//E uno(6071, 1, "asdf");
 	//E dos(6059, 21, "asdf");
 	//E tres(6019, 123, "123");
@@ -57,19 +36,13 @@ int main()
 	SearchTree::Iterator it(newTree.begin());
 	E output;
 	int i = 0;
->>>>>>> a8a2c187052dc43a0a5b0d69497c121fa9b4c17f
 	for (it; it != newTree.end(); ++it)
 	{
 		cout << i << " ";
 		output = *it;
-		cout << j << " ";
 		output.printData();
 		cout << endl;
-<<<<<<< HEAD
-		j++;
-=======
 		i++;
->>>>>>> a8a2c187052dc43a0a5b0d69497c121fa9b4c17f
 	}
 	return 0;
 }

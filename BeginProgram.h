@@ -10,7 +10,7 @@ class BeginProgram {
 private:
 	AVLTree oak;
 	SearchTree mahogany;
-
+	ofstream myFile;
 public:
 	BeginProgram();
 	void start();
