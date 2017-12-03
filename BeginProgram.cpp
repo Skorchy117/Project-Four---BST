@@ -258,7 +258,6 @@ void BeginProgram::performAction(SearchTree& tree, int _case)
 			name = output.getName();
 			cout << left << setw(20) << countySC << setw(20) << population << setw(15) << left << name << right << endl;
 			myFile << left << setw(20) << countySC << setw(20) << population << setw(15) << left << name << right << endl;
-			cout << endl;
 		}
 		myFile.close();
 		cout << endl;
