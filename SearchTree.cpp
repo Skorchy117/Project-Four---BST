@@ -79,7 +79,7 @@ BinaryTree::Position SearchTree::root() const
 	return T.root().left();									// since T.root() is our superroot, we go to the left to get our root.
 }
 
-BinaryTree::Position SearchTree::finder(int key,BinaryTree::Position  &data)
+BinaryTree::Position SearchTree::finder(int key, BinaryTree::Position &data)
 {
 	Entry dataEntry = *data;						// grab the data's position entry data.
 	if (data.isExternal())							// check if the data's position is external

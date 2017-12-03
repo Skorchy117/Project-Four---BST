@@ -12,10 +12,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 #include "AVLTree.h"
 using namespace std;
 
-void fillTree(SearchTree t, string fileName);
+void fillTree(SearchTree &st, AVLTree &at, string fileName);
 void stringToEntry(string s,Entry & e);
 int menu();
 void performAction(SearchTree& tree, int _case);
@@ -27,9 +28,21 @@ int main()
     AVLTree oak;
 	SearchTree mahogany;
     Entry ent;
-    fillTree(oak,"p4large.txt");
+    fillTree(mahogany,oak,"p4large.txt");
     cout << "success!\n\n";
     int option;
+    cout << "----------------------------------------------------------------------------\n";
+    cout << "----------------------------------------------------------------------------\n";
+    cout << "BST Testing.\n";
+    do
+    {
+        option = menu();
+        if ((option != 5) && (option != 0)) // If option is 0, will just rerun the loop, only 5 will terminate this
+        {
+            performAction(mahogany,option);
+        }
+    } while(option != 5);
+    cout << "AVLTree testing.\n";
     do
     {
         option = menu();
@@ -38,10 +51,13 @@ int main()
             performAction(oak,option);
         }
     } while(option != 5);
+    cout << "----------------------------------------------------------------------------\n";
+    cout << "----------------------------------------------------------------------------\n";
+    cout << "Turning trees into paper. (Terminating the program)\n";
     return 0;
 }
 
-void fillTree(SearchTree t, string fileName)
+void fillTree(SearchTree& st, AVLTree& at, string fileName)
 {
     Entry E;
     string record;
@@ -53,7 +69,8 @@ void fillTree(SearchTree t, string fileName)
         {
             getline(infile, record);
             stringToEntry(record, E);
-            t.insert(E);
+            st.insert(E);
+            at.insert(E);
         }
     }
     else
@@ -124,20 +141,24 @@ int menu()
 void performAction(SearchTree& tree, int _case)
 {
     int countySC, population;
+    clock_t time;
     string name;
     if (_case == 1)
     {
 		cout << "You chose to search for a record, enter a county-state-code: ";
 		cin >> countySC;
+        time = clock();
 		SearchTree::Iterator found = tree.find(countySC);
+        time = clock() - time;
 		Entry element = *found;
 		cout << endl;
 		if (element.county_state_code != 0)
 		{
 			cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name";
-			cout << endl;
+            cout << endl;
 			cout << "----------------------------------------------------------------------------\n";
 			element.printData();
+            cout << "Finding this entry took: " << ((double) (time)/CLOCKS_PER_SEC) << "(s).\n";
 			cout << endl;
 		}
 		else cout << "No data found" << endl;
@@ -152,16 +173,21 @@ void performAction(SearchTree& tree, int _case)
 		cin >> population;
 		cout << "Enter the state/county name: ";
 		cin >> name;
+        time = clock();
 		Entry element(countySC, population, name);
+        time = clock() - time;
 		tree.insert(element);
-		cout << "Succesfully entered your record\n";
+        cout << "Successfully entered your record, inserting this record took: " << ((double) (time)/CLOCKS_PER_SEC) << "(s).\n";
 	}
 	if (_case == 3)
 	{
 		cout << "You chose to delete a record\n";
 		cout << "Enter which record you would like to delete by county-state-code: ";
 		cin >> countySC;
+        time = clock();
 		tree.erase(countySC);
+        time = clock() - time;
+        cout << "Successfully removed a record, this took :" << ((double) (time)/CLOCKS_PER_SEC) << "(s).\n";
 	}
 	if (_case == 4)
 	{

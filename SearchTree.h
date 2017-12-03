@@ -39,7 +39,7 @@ public:
 
 protected:
 	BinaryTree::Position root() const;
-	BinaryTree::Position finder(int key,BinaryTree::Position &data);
+	BinaryTree::Position finder(int key, BinaryTree::Position &data);
 	BinaryTree::Position inserter(Entry data);
 	BinaryTree::Position eraser(BinaryTree::Position data);
 	BinaryTree::Position restructure(BinaryTree::Position x);
