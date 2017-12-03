@@ -149,7 +149,8 @@ void BeginProgram::performAction(AVLTree& tree, int _case)
 		cout << "Enter population: ";
 		cin >> population;
 		cout << "Enter the state/county name: ";
-		cin >> name;
+		cin.ignore();
+		getline(cin, name);
 		Entry element(countySC, population, name);
 		tree.insert(element);
 		int runTime = tree.findDepth(countySC);
@@ -222,7 +223,8 @@ void BeginProgram::performAction(SearchTree& tree, int _case)
 		cout << "Enter population: ";
 		cin >> population;
 		cout << "Enter the state/county name: ";
-		cin >> name;
+		cin.ignore();
+		getline(cin, name);
 		Entry element(countySC, population, name);
 		tree.insert(element);
 		int runTime = tree.findDepth(countySC);
