@@ -1,3 +1,5 @@
+//This file is just used for the main. It makes our main much easier to read, because we just use this class to 
+//carry out all functions of our project.
 #ifndef _BEGIN_PROGRAM_H
 #define _BEGIN_PROGRAM_H
 #include "AVLTree.h"

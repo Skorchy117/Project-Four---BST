@@ -1,3 +1,6 @@
+//This file is just used for the main. It makes our main much easier to read, because we just use this class to 
+//carry out all functions of our project.
+
 #include "BeginProgram.h"
 
 BeginProgram::BeginProgram()
@@ -164,7 +167,7 @@ void BeginProgram::performAction(AVLTree& tree, int _case)
 		cin >> countySC;
 		int runTime = tree.findDepth(countySC);
 		cout << endl;
-		cout << "RunTime: " << runTime << " milli - seconds" << endl << endl;
+		cout << "\nRunTime: " << runTime << " milli - seconds\n" << endl << endl;
 		tree.erase(countySC);
 	}
 	if (_case == 4)
@@ -228,7 +231,7 @@ void BeginProgram::performAction(SearchTree& tree, int _case)
 		Entry element(countySC, population, name);
 		tree.insert(element);
 		int runTime = tree.findDepth(countySC);
-		cout << "RunTime: " << runTime << " milli - seconds" << endl;
+		cout << "\nRunTime: " << runTime << " milli - seconds\n" << endl;
 		cout << "Succesfully entered your record\n";
 	}
 	if (_case == 3)
