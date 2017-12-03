@@ -171,7 +171,7 @@ void BeginProgram::performAction(AVLTree& tree, int _case)
 		SearchTree::Iterator it(tree.begin());
 		Entry output;
 		setfill(" ");
-		myFile.open("output.txt");
+		myFile.open("AVLoutput.txt");
 		cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
 		cout << "----------------------------------------------------------------------------\n";
 		myFile << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
@@ -245,7 +245,7 @@ void BeginProgram::performAction(SearchTree& tree, int _case)
 		Entry output;
 		setfill(" ");
 		cout << endl;
-		myFile.open("output.txt");
+		myFile.open("BSToutput.txt");
 		cout << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
 		cout << "----------------------------------------------------------------------------\n";
 		myFile << left << setw(20) << "county state code" << setw(20) << "population" << setw(20) << left << "county state name" << endl;
